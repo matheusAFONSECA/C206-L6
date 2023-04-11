@@ -2,7 +2,7 @@ package org.example;
 
 // Agora que existe o "extends Funcionario" a classe Arquiteto herdou os atributos
 // e metodos da classe Funcionario
-public class Arquiteto extends Funcionario{
+public class Arquiteto extends Funcionario implements Gerencia{
 
     private String especialidade;   // especialidade do arquiteto
 
@@ -10,6 +10,11 @@ public class Arquiteto extends Funcionario{
     public Arquiteto(String nome, int idade, double salario, String especialidade) {
         super(nome, idade, salario);
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public void executa() {
+        System.out.println("Fazendo um esquema de um projeto");
     }
 
     // "@Override" é como sobrescrever em sobre algo, geralmente um metodo da classe pai
@@ -39,5 +44,15 @@ public class Arquiteto extends Funcionario{
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public void gerencia() {
+
+    }
+
+    @Override
+    public void estuda() {
+
     }
 }

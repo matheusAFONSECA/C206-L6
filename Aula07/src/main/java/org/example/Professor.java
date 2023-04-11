@@ -12,6 +12,11 @@ public class Professor extends Funcionario{
         this.materia = materia;
     }
 
+    @Override
+    public void executa() {
+        System.out.println("Dando aula no momento");
+    }
+
     // "@Override" é como sobrescrever em sobre algo, geralmente um metodo da classe pai
     @Override
     public void mostraInfo() {

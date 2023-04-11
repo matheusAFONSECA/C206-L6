@@ -2,7 +2,7 @@ package org.example;
 
 // Agora que existe o "extends Funcionario" a classe Arquiteto herdou os atributos
 // e metodos da classe Funcionario
-public class Engenheiro extends Funcionario{
+public class Engenheiro extends Funcionario implements Gerencia{
 
     private String ramo;    // ramo do engenheiro
 
@@ -10,6 +10,11 @@ public class Engenheiro extends Funcionario{
     public Engenheiro(String nome, int idade, double salario, String ramo) {
         super(nome, idade, salario);
         this.ramo = ramo;
+    }
+
+    @Override
+    public void executa() {
+        System.out.println("Esta trabalhando em uma atividade no momento");
     }
 
     // "@Override" é como sobrescrever em sobre algo, geralmente um metodo da classe pai
@@ -25,6 +30,17 @@ public class Engenheiro extends Funcionario{
     public void executacaoAcao() {
         super.executacaoAcao();
         System.out.println("O engenheiro(a) " + getNome() + " esta codando...");
+    }
+
+    // metodo herdado da interface gerencia
+    @Override
+    public void gerencia() {
+
+    }
+
+    @Override
+    public void estuda() {
+
     }
 
     // getter e setter
