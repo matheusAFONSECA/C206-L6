@@ -15,9 +15,9 @@ public abstract class Carro implements Controle{
 
     @Override
     public void mostraInfo() {
-        System.out.println("COR DO CARRO: ");
+        System.out.println("COR DO CARRO: " + cor);
         System.out.println("VALOR DO CARRO: R$ " + valor);
-        System.out.println("ANO DO CARRO: ");
+        System.out.println("ANO DO CARRO: " + ano);
     }
 
     // getter e setter

@@ -8,7 +8,7 @@ public class SUV extends Carro{     // Classe filha que herda as informações d
     @Override
     public void mostraInfo() {
         super.mostraInfo();
-        System.out.println("TIPO DE TRACAO" + tracao);
+        System.out.println("TIPO DE TRACAO: " + tracao);
     }
 
     // getter e setter
