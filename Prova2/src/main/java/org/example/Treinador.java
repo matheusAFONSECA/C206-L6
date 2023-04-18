@@ -5,18 +5,14 @@ public class Treinador {
     private String nome;                            // nome do treinador
     private Pokemon[] pokemons = new Pokemon[20];   // Array de pokemons do treinador
 
-    // construtor
-    public Treinador(String nome, Pokemon[] pokemons) {
-        this.nome = nome;
-        this.pokemons = pokemons;
-    }
-
     // metodos
     public void addPokemon(Pokemon p){   // adiciona um pokemon à lista de pokemons do treinador
 
     }
 
     public void mostraInfo(){           // mostra as informações do treinador e dos pokemons dele
+
+        System.out.println("NOME DO TREINADOR: " + nome);
 
     }
 
