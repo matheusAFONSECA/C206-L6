@@ -12,6 +12,7 @@ public class Squirtle extends Pokemon implements FazerBarulho{
     // metodos
     @Override
     public void mostraInfo() {
+        System.out.println("-INFORMAÇÕES DO SQUIRTLE-");
         super.mostraInfo();
         System.out.println("MULTIPLICADOR DE ÁGUA: " + getMultiplicadorAgua());
     }

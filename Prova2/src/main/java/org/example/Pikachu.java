@@ -14,7 +14,11 @@ public class Pikachu extends Pokemon implements FazerBarulho, AtaqueEspecial{
     // metodos
     @Override
     public void mostraInfo() {
+        System.out.println("-INFORMAÇÕES DO PIKACHU-");
         super.mostraInfo();
+        if (heldItem != null) {
+            soltaRaios = soltaRaios + 200;
+        }
         System.out.println("SOLTA RAIOS: " + getSoltaRaios());
         System.out.println("PARALISIA ELETRICA: " + getParalisiaEletrica());
     }
@@ -26,7 +30,11 @@ public class Pikachu extends Pokemon implements FazerBarulho, AtaqueEspecial{
 
     @Override
     public void ataqueEspecial() {
-
+        if (soltaRaios > 750){
+            System.out.println(getNome() + " conseguiu ganhar de seu oponente!");
+        } else {
+            System.out.println(getNome() + " perdeu a batalha...");
+        }
     }
 
     @Override
