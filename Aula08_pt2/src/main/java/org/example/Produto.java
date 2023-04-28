@@ -1,7 +1,7 @@
 package org.example;
 
 // classe que representa um produto
-public class Produto {
+public class Produto implements Comparable<Produto>{
     // atributos
     private String nome;        // nome do produto
     private double preco;       // preco do produto
@@ -27,5 +27,11 @@ public class Produto {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+
+    @Override
+    public int compareTo(Produto o) {
+        return Double.compare(this.preco, o.getPreco());
     }
 }

@@ -1,10 +1,9 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // representa o objeto do carrinho
-public class Carrinho {
+public class Carrinho{
     // ArrayList de produtos
     private ArrayList<Produto> produtos = new ArrayList<>();
 
