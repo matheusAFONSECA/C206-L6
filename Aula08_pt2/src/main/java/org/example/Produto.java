@@ -32,6 +32,6 @@ public class Produto implements Comparable<Produto>{
 
     @Override
     public int compareTo(Produto o) {
-        return Double.compare(this.preco, o.getPreco());
+        return CharSequence.compare(this.nome, o.getNome());
     }
 }
