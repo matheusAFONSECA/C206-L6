@@ -4,6 +4,7 @@ import Exercicio1.Funcionarios;
 import Exercicio1.Arquivo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -41,6 +42,9 @@ public class Main {
 
                 case 2:     // mostra uma lista de funcionários
                     ArrayList <Funcionarios> funcionarios = arq.ler();
+
+                    // ordenando a ArrayList de forma descrescente
+                    Collections.sort(funcionarios, Collections.reverseOrder());
 
                     for (int i = 0; i < funcionarios.size(); i++) {
                         System.out.println("INFORMACOES DO FUNCIONARIO");

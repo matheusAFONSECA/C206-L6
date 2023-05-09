@@ -1,6 +1,6 @@
 package Exercicio1;
 
-public class Funcionarios {
+public class Funcionarios implements Comparable<Funcionarios>{
 
     // Atributos do funcionário
     private String nomeFunc;
@@ -31,5 +31,11 @@ public class Funcionarios {
 
     public void setIdadeFunc(int idadeFunc) {
         this.idadeFunc = idadeFunc;
+    }
+
+    // metodos
+    @Override
+    public int compareTo(Funcionarios o) {
+        return nomeFunc.compareTo(o.nomeFunc);
     }
 }
