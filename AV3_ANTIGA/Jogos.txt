@@ -1,0 +1,12 @@
+++ JOGO ++
+God Of War
+ação
+20.0
+++ JOGO ++
+COD
+FPS
+50.0
+++ JOGO ++
+DOOM
+AÇÃO/FPS
+15.0
