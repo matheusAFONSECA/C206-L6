@@ -1,0 +1,24 @@
+++ PRODUTO ++
+SALGADO
+Comida
+5.0
+++ PRODUTO ++
+Papel Higiênico
+Higiene
+10.0
+++ PRODUTO ++
+Abajur
+Decoração
+20.0
+++ PRODUTO ++
+Picolé
+Comida
+7.0
+++ PRODUTO ++
+Creme dental
+Higiene
+9.0
+++ PRODUTO ++
+Fio dental
+Higiene
+3.0
