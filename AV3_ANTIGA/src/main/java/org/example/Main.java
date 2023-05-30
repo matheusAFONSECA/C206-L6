@@ -20,7 +20,7 @@ public class Main {
         boolean flag = true;            // var de controle do menu
 
         while (flag) {
-            System.out.println("BEM VINDO AO MENU: ");
+            System.out.println("BEM VINDO AO SISTEMA DE JOGOS: ");
             System.out.println("1 - Cadastrar um novo Jogo");
             System.out.println("2 - Listar Jogos");
             System.out.println("3 - Listar Jogos por ordem crescente de preço");
@@ -38,8 +38,20 @@ public class Main {
                     System.out.print("GÊNERO: ");
                     j1.setGenero(in.nextLine());
                     System.out.print("PREÇO: ");
-                    j1.setPreco(in.nextDouble());
-                    arq.escrever(j1);
+                    try{        // tenta adicionar um preço
+                        double valor = in.nextDouble();
+
+                        if(valor < 0){      // caso seja um numero negativo
+                            throw new PrecoNegativoException(valor);
+                        }
+                        else {              // salva o preço do jogo
+                            j1.setPreco(valor);
+                        }
+
+                    } catch (PrecoNegativoException e){
+                        break;              // para porque percebeu um número negativo
+                    }
+                    arq.escrever(j1);       // escreve o dados no arquivo
                     break;
 
                 case 2:     // mostra as informações do arquivo Jogo.txt

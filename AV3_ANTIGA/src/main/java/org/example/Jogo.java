@@ -20,7 +20,25 @@ public class Jogo implements Comparable<Jogo>{
     }
 
     public void setPreco(double preco) {
+        // Aqui faço o tratamento se o preço será adicionado
+        // -> caso o preço seja negativo, não será adicionado no arquivo .txt
+//        try{
+//
+//            if(preco < 0){
+//                throw new PrecoNegativoException(preco);
+//            }
+//            else {
+//                this.preco = preco;
+//            }
+//
+//        }catch (PrecoNegativoException e){
+//
+//            System.out.println(e);
+//
+//        }
         this.preco = preco;
+
+
     }
 
     public String getGenero() {
