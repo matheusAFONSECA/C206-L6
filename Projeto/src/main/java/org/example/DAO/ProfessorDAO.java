@@ -1,34 +1,33 @@
 package org.example.DAO;
 
-// importação necessária para acessar o objeto "Aluno"
-import org.example.MODEL.Aluno;
+// importação necessária para acessar o objeto "Professor"
+import org.example.MODEL.Professor;
 
 // importação de bibliotecas necessárias para trabalhar com o BD
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 // classe que ira fazer a inserção de dados do aluno no BD
-public class AlunoDAO extends ConnectionDAO{
+public class ProfessorDAO extends ConnectionDAO{
     // DAO - Data Access Object
     boolean sucesso = false; // Para saber se funcionou a ação no BD
 
     // metodos para realizar funções específicas no BD
 
     // INSERT ->  inserção de dados no BD
-    public boolean insertAluno(Aluno aluno) {
+    public boolean insertProfessor(Professor professor) {
 
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "INSERT INTO aluno (matricula,curso,nome) values(?,?,?)";
+        String sql = "INSERT INTO professor (idProfessor,nome) values(?,?)";
 
         try {
             pst = con.prepareStatement(sql);    // faz a preparação para iserção de dados na tebala aluno
 
             // inserção de dados no bd
-            pst.setInt(1, aluno.getMatricula());
-            pst.setString(2, aluno.getCurso());
-            pst.setString(3, aluno.getNome());
+            pst.setInt(1, professor.getIdProfessor());
+            pst.setString(2, professor.getNome());
             pst.execute();
 
             sucesso = true;     // define como sucesso a inserção de dados
@@ -49,24 +48,21 @@ public class AlunoDAO extends ConnectionDAO{
     }
 
     // UPDATE -> atualização de dados no BD
-    public boolean updateAluno(int matricula, String curso, Aluno aluno) {
-        // -> matricula e curso do aluno são necessários para conseguir fazer a atualização no BD
-        // porque são as chaves primarias da tabela 'Aluno'
+    public boolean updateProfessor(int idProfessor, Professor professor) {
+        // -> é necessário a chave primário da tabela professor, que no caso é a idProfessor
 
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "UPDATE aluno SET matricula=?, curso=?, nome=? where matricula=? and curso=?";
+        String sql = "UPDATE professor SET idProfessor=?, nome=? where idProfessor=?";
 
         try {
-            pst = con.prepareStatement(sql);        // faz a preparação para atualização de dados na tebala aluno
+            pst = con.prepareStatement(sql);        // faz a preparação para atualização de dados na tebala professor
 
             // inserção de dados no bd
-            pst.setInt(1, aluno.getMatricula());
-            pst.setString(2, aluno.getCurso());
-            pst.setString(3, aluno.getNome());
-            pst.setInt(4, matricula);
-            pst.setString(5,curso);
+            pst.setInt(1, professor.getIdProfessor());
+            pst.setString(2, professor.getNome());
+            pst.setInt(3, idProfessor);
             pst.execute();
 
             sucesso = true;     // define como sucesso a atualização de dados
@@ -87,21 +83,19 @@ public class AlunoDAO extends ConnectionDAO{
     }
 
     // DELETE -> Ação de deletar dados no BD
-    public boolean deleteAluno(int matricula, String curso) {
-        // -> matricula e curso do aluno são necessários para conseguir fazer a atualização no BD
-        // porque são as chaves primarias da tabela 'Aluno'
+    public boolean deleteProfessor(int idProfessor) {
+        // -> é necessário a chave primário da tabela professor, que no caso é a idProfessor
 
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "DELETE FROM aluno where matricula=? and curso=?";
+        String sql = "DELETE FROM professor where idProfessor=?";
 
         try {
-            pst = con.prepareStatement(sql);        // faz a preparação para selecionar dados na tebala aluno
+            pst = con.prepareStatement(sql);        // faz a preparação para deletar dados na tebala professor
 
             // inserção de dados no bd
-            pst.setInt(1, matricula);
-            pst.setString(2, curso);
+            pst.setInt(1, idProfessor);
             pst.execute();
 
             sucesso = true;     // define como sucesso a deleta de dados
@@ -121,27 +115,26 @@ public class AlunoDAO extends ConnectionDAO{
     }
 
     // SELECT -> retorna uma ArrayList com os dados da tabela
-    public ArrayList<Aluno> selectAluno() {
-        ArrayList<Aluno> alunos = new ArrayList<>();    // ArrayList Aux
+    public ArrayList<Professor> selectProfessor() {
+        ArrayList<Professor> professores = new ArrayList<>();    // ArrayList Aux
 
         connectToDB();      // função para conectar com o BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "SELECT * FROM aluno";
+        String sql = "SELECT * FROM professor";
 
         try {
-            st = con.createStatement();        // faz a preparação para deletar dados na tebala aluno
+            st = con.createStatement();        // faz a preparação para selecionar dados na tebala aluno
 
             // Faz a query no BD
             rs = st.executeQuery(sql);
-            System.out.println("Lista de alunos: ");
+            System.out.println("Lista de Professores: ");
             while (rs.next()) {
-                Aluno alunoAux = new Aluno(rs.getInt("matricula"),rs.getString("curso"), rs.getString("nome"));
-                System.out.println("\tNome = " + alunoAux.getCurso());
-                System.out.println("\tMatricula = " + alunoAux.getMatricula());
-                System.out.println("\tCurso = " + alunoAux.getNome());
+                Professor professorAux = new Professor(rs.getInt("idProfessor"), rs.getString("nome"));
+                System.out.println("\tNome = " + professorAux.getNome());
+                System.out.println("\tidProfessor = " + professorAux.getIdProfessor());
                 System.out.println("-----------------------------------------------");
-                alunos.add(alunoAux);
+                professores.add(professorAux);
             }
 
             sucesso = true;     // define como sucesso a seleção de dados
@@ -158,7 +151,6 @@ public class AlunoDAO extends ConnectionDAO{
             }
         }
 
-        return alunos;      // Retorna a ArrayList de Aluno
+        return professores;      // Retorna a ArrayList de Aluno
     }
-
 }
