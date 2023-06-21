@@ -6,14 +6,12 @@ public class Materia {
     private String idMateria;               // id da materia
     private String nome;                    // nome da materia
     private int Professor_idProfessor;      // id do professor responsavel da materia
-    private int Notas_idNotas;              // id da nota
 
     // construtor
-    public Materia(String idMateria, String nome, int professor_idProfessor, int notas_idNotas) {
+    public Materia(String idMateria, String nome, int professor_idProfessor) {
         this.idMateria = idMateria;
         this.nome = nome;
         Professor_idProfessor = professor_idProfessor;
-        Notas_idNotas = notas_idNotas;
     }
 
     // getter e setter
@@ -41,11 +39,4 @@ public class Materia {
         Professor_idProfessor = professor_idProfessor;
     }
 
-    public int getNotas_idNotas() {
-        return Notas_idNotas;
-    }
-
-    public void setNotas_idNotas(int notas_idNotas) {
-        Notas_idNotas = notas_idNotas;
-    }
 }
