@@ -30,14 +30,148 @@ public class Main {
             System.out.println("6 - SAIR");
 
             int op = in.nextInt();      // inteiro que controla o menu
-            in.nextLine();              // necessário para poder adicionar
+            in.nextLine();              // necessário para poder adicionar Strings após um Int
 
             switch (op){
                 case 1:
+                    System.out.println("QUAL TIPO DE CADASTRO DESEJA FAZER:");
+                    System.out.println("1 - Aluno");
+                    System.out.println("2 - Professor");
+                    System.out.println("3 - Monitor");
+
+                    int opAUX = in.nextInt();       // inteiro que controla o sub menu
+                    in.nextLine();                  // necessário para poder adicionar Strings após um Int
+
+                    switch (opAUX){
+                        case 1:         // cadastrar um Aluno
+                            // instanciando um AlunoDAO
+                            AlunoDAO alunoDAOcadastro = new AlunoDAO();
+
+                            // var aux
+                            int matricula;          // matricula do aluno
+                            String nomeAluno;       // nome do aluno
+                            String cursoAluno;      // curso do aluno
+
+                            System.out.println("CADASTRANDO UM NOVO ALUNO:");
+                            System.out.print("NOME: ");
+                            nomeAluno = in.nextLine();
+
+                            System.out.print("CURSO: ");
+                            cursoAluno = in.nextLine();
+
+                            System.out.print("MATRICULA: ");
+                            matricula = in.nextInt();
+
+                            // instanciando um Aluno
+                            Aluno alunoCadastro = new Aluno(matricula, nomeAluno, cursoAluno);
+
+                            // inserindo os dados do aluno no BD
+                            alunoDAOcadastro.insertAluno(alunoCadastro);
+
+                            break;
+
+                        case 2:         // cadastrar um Professor
+                            // instanciando um ProfessorDAO
+                            ProfessorDAO professorDAOcadastro = new ProfessorDAO();
+
+                            // var aux
+                            int idProfessorCadastro;    // id do professor
+                            String nomeProfessor;           // nome do aluno
+
+                            System.out.println("CADASTRANDO UM NOVO PROFESSOR:");
+                            System.out.print("NOME: ");
+                            nomeProfessor = in.nextLine();
+
+                            System.out.print("ID: ");
+                            idProfessorCadastro = in.nextInt();
+
+                            // instanciando um Professor
+                            Professor professorCadastro = new Professor(idProfessorCadastro, nomeProfessor);
+
+                            // inserindo os dados do professor no BD
+                            professorDAOcadastro.insertProfessor(professorCadastro);
+
+                            break;
+
+                        case 3:         // cadastrar um Monitor
+                            // instanciando um MonitorDAO
+                            MonitorDAO monitorDAOcadastro = new MonitorDAO();
+
+                            // var aux
+                            int matriculaMonitor;           // matricula do monitor
+                            String cursoMonitor;            // curso do monitor
+                            String materiaMonitor;          // materia do monitor
+                            int professorResponsavel;       // id do porfessor responsavel pelo monitor
+
+                            System.out.println("CADASTRANDO UM NOVO MONITOR:");
+                            System.out.print("MATRICULA: ");
+                            matriculaMonitor = in.nextInt();
+
+                            in.nextLine();      // necessário para poder adicionar Strings após um Int
+
+                            System.out.print("CURSO: ");
+                            cursoMonitor = in.nextLine();
+
+                            System.out.print("MATERIA: ");
+                            materiaMonitor = in.nextLine();
+
+                            System.out.print("ID DO PROFESSOR RESPONSAVEL: ");
+                            professorResponsavel = in.nextInt();
+
+                            // instanciando um Monitor
+                            Monitor monitorCadastro = new Monitor(matriculaMonitor, cursoMonitor,
+                                    materiaMonitor, professorResponsavel);
+
+                            // inserindo os dados do Monitor no BD
+                            monitorDAOcadastro.insertMonitor(monitorCadastro);
+
+                            break;
+
+                        default:        // caso tenha colocado uma opção errada
+                            System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA PARA CADASTRAR!!");
+                            break;
+                    }
 
                     break;
 
                 case 2:
+                    System.out.println("DESEJA FAZER LISTAGEM DE:");
+                    System.out.println("1 - Alunos");
+                    System.out.println("2 - Professores");
+                    System.out.println("3 - Monitores");
+
+                    int opAUX2 = in.nextInt();       // inteiro que controla o sub menu
+                    in.nextLine();                   // necessário para poder adicionar Strings após um Int
+
+                    switch (opAUX2){
+                        case 1:     // listar os alunos
+
+                            // instanciando um AlunoDAO para fazer a listagem de alunos do BD
+                            AlunoDAO alunoDAOlista = new AlunoDAO();
+                            alunoDAOlista.selectAluno();
+
+                            break;
+
+                        case 2:     // listar os professores
+
+                            // instanciando um ProfessorDAO para fazer a listagem de professores do BD
+                            ProfessorDAO professorDAOlista = new ProfessorDAO();
+                            professorDAOlista.selectProfessor();
+
+                            break;
+
+                        case 3:     // listar os monitores
+
+                            // instanciando um MonitorDAO para fazer a listagem de monitores do BD
+                            MonitorDAO monitorDAOlista = new MonitorDAO();
+                            monitorDAOlista.selectMonitor();
+
+                            break;
+
+                        default:        // caso tenha colocado uma opção errada
+                            System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA PARA LISTAGEM!!");
+                            break;
+                    }
 
                     break;
 
@@ -57,12 +191,16 @@ public class Main {
                     flag = false;
                     break;
 
-                default:
+                default:    // caso tenha colocado uma opção errada
                     System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA PARA USAR O MENU!!");
                     break;
             }
 
         }
+        System.out.println("Obrigado por utilizar o sistema!!!");
+
+        // fechando o Scanner
+        in.close();
 
     }
 
