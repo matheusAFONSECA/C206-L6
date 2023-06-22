@@ -7,23 +7,23 @@ import org.example.MODEL.*;
 public class Main {
     public static void main(String[] args) {
         // testes de inserção, atualização, seleção e deletar dados
-        // definindo NotaHasMateria
-        NotaHasMateriaDAO notaHasMateriaDAO = new NotaHasMateriaDAO();
+        // definindo AlunoHasProfessorDAO
+        AlunoHasProfessorDAO alunoHasProfessorDAO = new AlunoHasProfessorDAO();
 
-        // definindo NotaHasMateria
-        NotaHasMateria notaHasMateria = new NotaHasMateria(1, "C206", 1);
+        // definindo AlunoHasProfessorDAO
+        AlunoHasProfessor alunoHasProfessor = new AlunoHasProfessor(1, "GEA", 1);
 
-        // inserindo o dado da nota_has_materia no BD
-        notaHasMateriaDAO.insertNotaHasMateria(notaHasMateria);
+        // inserindo o dado da aluno_has_professor no BD
+        alunoHasProfessorDAO.insertAlunoHasPofessor(alunoHasProfessor);
 
-        // atualizando o dado da nota_has_materia no BD
-        // notaHasMateriaDAO.updateNotaHasMateria(1, "C206", "E202");
+        // atualizando o dado da aluno_has_professor no BD
+        // alunoHasProfessorDAO.updateAlunoHasProfessor(1, "GEA", 2);
 
-        // deletando algum dado da nota_has_materia no BD
-        //notaHasMateriaDAO.deleteNotasHasMateria(1, "C206");
+        // deletando algum dado da aluno_has_professor no BD
+        // alunoHasProfessorDAO.deleteAlunoHasProfessor(1, "GEA");
 
-        // vendo os dados da tabela nota_has_materia
-        notaHasMateriaDAO.selectNotaHasMateria();
+        // vendo os dados da tabela aluno_has_professor
+        alunoHasProfessorDAO.selectAlunoHasProfessor();
 
     }
 }
