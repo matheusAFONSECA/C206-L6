@@ -19,17 +19,19 @@ public class NotaDAO extends ConnectionDAO{
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "INSERT INTO nota values(?,?,?,?,?)";
+        String sql = "INSERT INTO nota(nota_obtida, Alunos_matricula, Alunos_curso," +
+                "Materia_idMateria, Materia_Professor_idProfessor)" +
+                " values(?,?,?,?,?)";
 
         try {
             pst = con.prepareStatement(sql);    // faz a preparação para iserção de dados na tebala Nota
 
             // inserção de dados no bd
-            pst.setInt(1, nota.getIdNota());
-            pst.setInt(2, nota.getNotaObtida());
-            pst.setInt(3, nota.getAlunoMatricula());
-            pst.setString(4, nota.getAlunoCurso());
-            pst.setInt(5, nota.getIdMonitor());
+            pst.setInt(1, nota.getNotaObtida());
+            pst.setInt(2, nota.getAlunoMatricula());
+            pst.setString(3, nota.getAlunoCurso());
+            pst.setString(4, nota.getIdMateria());
+            pst.setInt(5, nota.getIdProfessor());
             pst.execute();
 
             sucesso = true;     // define como sucesso a inserção de dados
@@ -136,13 +138,14 @@ public class NotaDAO extends ConnectionDAO{
             rs = st.executeQuery(sql);
             System.out.println("Lista de notas: ");
             while (rs.next()) {
-                Nota notaAux = new Nota(rs.getInt("idNotas"),rs.getInt("nota_obtida"),
+                Nota notaAux = new Nota(rs.getInt("nota_obtida"),
                         rs.getInt("Alunos_matricula"), rs.getString("Alunos_curso"),
-                        rs.getInt("Materia_Monitor_idMonitor"));
+                        rs.getString("Materia_idMateria"),
+                                rs.getInt("Materia_Professor_idProfessor"));
                 System.out.println("\tNota = " + notaAux.getNotaObtida());
                 System.out.println("\tMatricula = " + notaAux.getAlunoMatricula());
                 System.out.println("\tCurso = " + notaAux.getAlunoCurso());
-                System.out.println("\tMonitor = " + notaAux.getIdMonitor());
+                System.out.println("\tMateria = " + notaAux.getIdMateria());
                 System.out.println("-----------------------------------------------");
                 notas.add(notaAux);
             }

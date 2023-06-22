@@ -23,8 +23,8 @@ public class Main {
         while (flag) {
             System.out.println("Qual ação deseja realizar??");
             System.out.println("1 - Cadastrar um novo Aluno, Professor ou Monitor");
-            System.out.println("2 - Listagem de Alunos, Professores ou Monitores");
-            System.out.println("3 - Cadastrar nova materia");
+            System.out.println("2 - Listagem de Alunos, Professores, Monitores e Materias");
+            System.out.println("3 - Cadastrar materia");
             System.out.println("4 - Publicar ou corrigir Nota");
             System.out.println("5 - Calculo da media das notas de alguma materia especifica");
             System.out.println("6 - SAIR");
@@ -33,7 +33,7 @@ public class Main {
             in.nextLine();              // necessário para poder adicionar Strings após um Int
 
             switch (op){
-                case 1:
+                case 1:     // cadastro de aluno, professor ou monitor
                     System.out.println("QUAL TIPO DE CADASTRO DESEJA FAZER:");
                     System.out.println("1 - Aluno");
                     System.out.println("2 - Professor");
@@ -134,11 +134,12 @@ public class Main {
 
                     break;
 
-                case 2:
+                case 2:     // listagem de alunos, professor e monitores
                     System.out.println("DESEJA FAZER LISTAGEM DE:");
                     System.out.println("1 - Alunos");
                     System.out.println("2 - Professores");
                     System.out.println("3 - Monitores");
+                    System.out.println("4 - Materias");
 
                     int opAUX2 = in.nextInt();       // inteiro que controla o sub menu
                     in.nextLine();                   // necessário para poder adicionar Strings após um Int
@@ -168,6 +169,14 @@ public class Main {
 
                             break;
 
+                        case 4:     // listar as materias
+
+                            // instanciando uma MateriaDAO para fazer a listagem de materias do BD
+                            MateriaDAO materiaDAOlista = new MateriaDAO();
+                            materiaDAOlista.selectMateria();
+
+                            break;
+
                         default:        // caso tenha colocado uma opção errada
                             System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA PARA LISTAGEM!!");
                             break;
@@ -175,11 +184,88 @@ public class Main {
 
                     break;
 
-                case 3:
+                case 3:     // cadastrar uma nova materia
+
+                    // instanciando um MateriaDAO
+                    MateriaDAO materiaDAOcadastro = new MateriaDAO();
+
+                    // var aux
+                    String sigla;           // sigla da materia
+                    String nomeMateria;     // nome da materia
+                    int idProfessorMat;     // professor da materia
+
+                    System.out.println("CADASTRANDO UMA NOVA MATERIA: ");
+                    System.out.print("SIGLA: ");
+                    sigla = in.nextLine();
+
+                    System.out.print("NOME DA MATERIA: ");
+                    nomeMateria = in.nextLine();
+
+                    System.out.print("ID DO PROFESSOR RESPONSAVEL: ");
+                    idProfessorMat = in.nextInt();
+
+                    // instanciando uma Materia
+                    Materia materiaCadastro = new Materia(sigla, nomeMateria, idProfessorMat);
+
+                    materiaDAOcadastro.insertMateria(materiaCadastro);
 
                     break;
 
                 case 4:
+
+                    System.out.println("O QUE DESEJA FAZER:");
+                    System.out.println("1 - Publicar nota");
+                    System.out.println("2 - Corigir nota");
+
+                    int opAUX3 = in.nextInt();       // inteiro que controla o sub menu
+                    in.nextLine();                   // necessário para poder adicionar Strings após um Int
+
+                    switch (opAUX3){
+                        case 1:     // publicar nota
+
+                            // instanciando um NotaDAO
+                            NotaDAO notaDAOpublicar = new NotaDAO();
+
+                            // var aux
+                            int nota;           // nota do aluno
+                            int matriculaNota;      // matricula do aluno
+                            String cursoNota;       // curso do aluno
+                            String materiaNota;     // materia do aluno
+                            int idProfessorNota;    // id do professor do aluno
+
+                            System.out.println("PUBLICAÇÃO DA NOTA:");
+
+                            System.out.print("NOTA OBTIDA: ");
+                            nota = in.nextInt();
+
+                            System.out.print("MATRICULA DO ALUNO: ");
+                            matriculaNota = in.nextInt();
+                            in.nextLine();
+
+                            System.out.print("CURSO DO ALUNO: ");
+                            cursoNota = in.nextLine();
+
+                            System.out.print("MATERIA: ");
+                            materiaNota = in.nextLine();
+
+                            System.out.print("ID DO PROFESSOR: ");
+                            idProfessorNota = in.nextInt();
+
+                            // instanciando uma Nota
+                            Nota notaPublicar = new Nota(nota, matriculaNota, cursoNota, materiaNota, idProfessorNota);
+
+                            notaDAOpublicar.insertNota(notaPublicar);
+
+                            break;
+
+                        case 2:
+
+                            break;
+
+                        default:        // caso tenha colocado uma opção errada
+                            System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA!!!");
+                            break;
+                    }
 
                     break;
 

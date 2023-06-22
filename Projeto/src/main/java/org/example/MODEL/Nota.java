@@ -6,18 +6,35 @@ public class Nota {
     private int notaObtida;         // nota obtida pelo aluno
     private int alunoMatricula;     // matricula do aluno
     private String alunoCurso;      // curso do aluno
-    private int idMonitor;          // Id do monitor do aluno
+    private String idMateria;       // materia do aluno que ele recebe a nota
+    private int idProfessor;     // id do professor que soltou a nota
 
     // construtor
-    public Nota(int idNota, int notaObtida, int alunoMatricula, String alunoCurso, int idMonitor) {
-        this.idNota = idNota;
+    public Nota(int notaObtida, int alunoMatricula, String alunoCurso, String idMateria, int idProfessor) {
         this.notaObtida = notaObtida;
         this.alunoMatricula = alunoMatricula;
         this.alunoCurso = alunoCurso;
-        this.idMonitor = idMonitor;
+        this.idMateria = idMateria;
+        this.idProfessor = idProfessor;
     }
 
     // getter e setter
+    public String getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(String idMateria) {
+        this.idMateria = idMateria;
+    }
+
+    public int getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
+
     public int getIdNota() {
         return idNota;
     }
@@ -50,11 +67,4 @@ public class Nota {
         this.alunoCurso = alunoCurso;
     }
 
-    public int getIdMonitor() {
-        return idMonitor;
-    }
-
-    public void setIdMonitor(int idMonitor) {
-        this.idMonitor = idMonitor;
-    }
 }
