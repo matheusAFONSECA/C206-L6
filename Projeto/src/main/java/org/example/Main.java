@@ -1,35 +1,29 @@
 package org.example;
 
-import org.example.DAO.AlunoDAO;
-import org.example.DAO.MateriaDAO;
-import org.example.DAO.MonitorDAO;
-import org.example.DAO.ProfessorDAO;
-import org.example.MODEL.Aluno;
-import org.example.MODEL.Materia;
-import org.example.MODEL.Monitor;
-import org.example.MODEL.Professor;
+import org.example.DAO.*;
+import org.example.MODEL.*;
 
 // -> nessa classe vamos fazer o menu que vai rodar no termial e fazer todas as funcionalidades do código
 public class Main {
     public static void main(String[] args) {
         // testes de inserção, atualização, seleção e deletar dados
-        // definindo MonitorDAO
-        MonitorDAO monitorDAO = new MonitorDAO();
+        // definindo NotaDAO
+        NotaDAO notaDAO = new NotaDAO();
 
         // definindo Monitor
-        Monitor monitor = new Monitor(1, "GEA", "E202", 2);
+        Nota nota = new Nota(1, 50, 1, "GEC", 1);
 
-        // inserindo o dado do Monitor no BD
-        monitorDAO.insertMonitor(monitor);
+        // inserindo o dado da nota no BD
+        notaDAO.insertNota(nota);
 
-        // atualizando o dado do Monitor no BD
-        // monitorDAO.updateMonitor(1, "GEA", "C206", monitor);
+        // atualizando o dado da nota no BD
+        // notaDAO.updateNota(60, 1, "GEC");
 
-        // deletando algum dado da tabela no BD
-        // monitorDAO.deleteMonitor(1, "GEA");
+        // deletando algum dado da nota no BD
+        // notaDAO.deleteNota(1, "GEC", 1);
 
-        // vendo os dados da tabela Materia
-        monitorDAO.selectMonitor();
+        // vendo os dados da tabela nota
+        notaDAO.selectNota();
 
     }
 }
