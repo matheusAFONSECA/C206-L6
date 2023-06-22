@@ -260,6 +260,33 @@ public class Main {
 
                         case 2:
 
+                            // instanciando uma NotaDAO
+                            NotaDAO notaDAOupdate = new NotaDAO();
+
+                            // var aux
+                            int matriculaUpdateNota;        // matricula do aluno que vai ter a nota atualizada
+                            String cursoUpdateNota;         // curso do aluno que vai ter a nota atualizada
+                            String materiaUpdateNota;       // materia em que a nota vai ser atualizada
+                            int notaAtualizada;             // nota atualizada
+
+                            System.out.println("CORRIGINDO NOTA: ");
+
+                            System.out.print("Matricula: ");
+                            matriculaUpdateNota = in.nextInt();
+                            in.nextLine();
+
+                            System.out.print("Curso: ");
+                            cursoUpdateNota = in.nextLine();
+
+                            System.out.print("Materia: ");
+                            materiaUpdateNota = in.nextLine();
+
+                            System.out.print("Nota Atualizada: ");
+                            notaAtualizada = in.nextInt();
+
+                            // atualizando a nota
+                            notaDAOupdate.updateNota(notaAtualizada, matriculaUpdateNota, cursoUpdateNota, materiaUpdateNota);
+
                             break;
 
                         default:        // caso tenha colocado uma opção errada

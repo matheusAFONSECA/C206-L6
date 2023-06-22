@@ -52,14 +52,15 @@ public class NotaDAO extends ConnectionDAO{
     }
 
     // UPDATE -> atualização de dados no BD
-    public boolean updateNota(int nota,int matricula, String curso) {
+    public boolean updateNota(int nota,int matricula, String curso, String materia) {
         // -> matricula e curso do aluno são necessários para conseguir fazer a atualização no BD
         // porque são as chaves primarias da tabela 'Nota'
 
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "UPDATE nota SET nota_obtida=? where Alunos_matricula=? and Alunos_curso=?";
+        String sql = "UPDATE nota SET nota_obtida=? where Alunos_matricula=? and " +
+                "Alunos_curso=? and Materia_idMateria = ?";
 
         try {
             pst = con.prepareStatement(sql);        // faz a preparação para atualização de dados na tebala aluno
@@ -68,6 +69,7 @@ public class NotaDAO extends ConnectionDAO{
             pst.setInt(1, nota);
             pst.setInt(2, matricula);
             pst.setString(3, curso);
+            pst.setString(4, materia);
             pst.execute();
 
             sucesso = true;     // define como sucesso a atualização de dados
