@@ -425,11 +425,11 @@ public class Main {
 
                             System.out.println("EXCLUINDO REGISTRO DE NOTA: ");
 
-                            System.out.print("MATRICULA");
+                            System.out.print("MATRICULA DO ALUNO: ");
                             notaDeleteMat = in.nextInt();
                             in.nextLine();
 
-                            System.out.print("CURSO: ");
+                            System.out.print("CURSO DO ALUNO: ");
                             notaDeleteCur = in.nextLine();
 
                             System.out.print("MATERIA: ");
@@ -444,6 +444,36 @@ public class Main {
                             System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA!!!");
                             break;
                     }
+
+                    break;
+
+                case 7:     // definir um orientador para algum aluno
+
+                    // instanciando AlunoHasProfessorDAO
+                    AlunoHasProfessorDAO alunoHasProfessorDAO = new AlunoHasProfessorDAO();
+
+                    // var aux
+                    int idOrientador;           // orientador do aluno
+                    int matriculaOrientado;     // aluno orientado
+                    String cursoOrientado;      // curso do aluno orientado
+
+                    System.out.println("Adicionando um novo orientador: ");
+
+                    System.out.print("CURSO DO ALUNO: ");
+                    cursoOrientado = in.nextLine();
+
+                    System.out.print("MATRICULA DO ALUNO: ");
+                    matriculaOrientado = in.nextInt();
+
+                    System.out.print("ID DO ORIENTADOR: ");
+                    idOrientador = in.nextInt();
+
+                    // instanciando um AlunoHasProfessor
+                    AlunoHasProfessor alunoHasProfessor = new AlunoHasProfessor(matriculaOrientado, cursoOrientado,
+                            idOrientador);
+
+                    // adicionando registro no BD
+                    alunoHasProfessorDAO.insertAlunoHasPofessor(alunoHasProfessor);
 
                     break;
 
