@@ -7,7 +7,7 @@ import org.example.MODEL.Nota;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class NotaDAO extends ConnectionDAO{
+public class NotaDAO extends ConnectionDAO implements Calculos{
     // DAO - Data Access Object
     boolean sucesso = false; // Para saber se funcionou a ação no BD
 
@@ -134,7 +134,7 @@ public class NotaDAO extends ConnectionDAO{
         String sql = "SELECT * FROM nota";
 
         try {
-            st = con.createStatement();        // faz a preparação para deletar dados na tebala nota
+            st = con.createStatement();        // faz a preparação para selecionar dados na tebala nota
 
             // Faz a query no BD
             rs = st.executeQuery(sql);
@@ -167,5 +167,46 @@ public class NotaDAO extends ConnectionDAO{
         }
 
         return notas;      // Retorna a ArrayList de notas
+    }
+
+    // METEDO QUE CALCULA A MEDIA DE UMA MATERIA COM BASE NAS NOTAS
+    @Override
+    public float CalcularMediaMateria(String idMateria) {
+        // var aux
+        float resultado = 0;        // guarda o resultado que sera retornado
+
+        connectToDB();      // função para conectar com o BD
+
+        // String de comando que vai ser realizada no BD
+        String sql = "Select AVG(nota_obtida) as \"Média das notas\" from nota where Materia_idMateria=?";
+
+        try {
+            pst = con.prepareStatement(sql); // faz a preparação para selecionar dados da tabela nota
+
+            // inserção de dados na condição do select
+            pst.setString(1, idMateria);
+
+            rs = pst.executeQuery();    // Executa a consulta e obtém o resultado
+
+            while (rs.next()) {
+                // System.out.println(rs.getFloat("Média das notas"));
+                resultado = rs.getFloat("Média das notas");
+            }
+
+            sucesso = true;     // define como sucesso a conta da media de dados das notas
+
+        } catch (SQLException ex) {     // mostra o erro que ocorreu, caso ele aconteça
+            System.out.println("Erro = " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {    // mostra o erro que ocorreu, caso ele aconteça
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+
+        return resultado;
     }
 }

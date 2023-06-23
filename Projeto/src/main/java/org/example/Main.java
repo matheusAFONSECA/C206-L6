@@ -26,9 +26,10 @@ public class Main {
             System.out.println("2 - Listagem de Alunos, Professores, Monitores e Materias");
             System.out.println("3 - Cadastrar materia");
             System.out.println("4 - Publicar ou corrigir Nota");
-            System.out.println("5 - Calculo da media das notas de alguma materia especifica");
+            System.out.println("5 - Calculo da media das notas de alguma materia específica");
             System.out.println("6 - Excluir resgistro de Aluno, Professor, Monitor, Materia ou Nota...");
-            System.out.println("7 - SAIR");
+            System.out.println("7 - Definir orientador para algum aluno");
+            System.out.println("8 - SAIR");
 
             int op = in.nextInt();      // inteiro que controla o menu
             in.nextLine();              // necessário para poder adicionar Strings após um Int
@@ -297,7 +298,20 @@ public class Main {
 
                     break;
 
-                case 5:
+                case 5:     // ver as médias das notas dos alunos de uma turma
+
+                    // var aux
+                    String materiaMedia;     // Materia na qual deseja ver as medias dos alunos
+                    float resultado;         // resultado da media
+
+                    System.out.print("QUAL MATERIA(SIGLA) DESEJA SABER A MÉDIA DAS NOTAS: ");
+                    materiaMedia = in.nextLine();
+
+                    // NotaDAO aux
+                    NotaDAO notaDAOmedia = new NotaDAO();
+                    resultado = notaDAOmedia.CalcularMediaMateria(materiaMedia);
+                    System.out.println("A MÉDIA DA TURMA " + materiaMedia + " é " + resultado);
+
 
                     break;
 
@@ -433,7 +447,7 @@ public class Main {
 
                     break;
 
-                case 7:     // sai do menu de opções
+                case 8:     // sai do menu de opções
                     flag = false;
                     break;
 
