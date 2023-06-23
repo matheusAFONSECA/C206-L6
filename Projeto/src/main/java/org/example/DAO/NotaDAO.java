@@ -90,14 +90,14 @@ public class NotaDAO extends ConnectionDAO{
     }
 
     // DELETE -> Ação de deletar dados no BD
-    public boolean deleteNota(int matricula, String curso, int monitor) {
+    public boolean deleteNota(int matricula, String curso, String idMateria) {
         // -> matricula e curso do aluno são necessários para conseguir fazer a atualização no BD
         // porque são as chaves primarias da tabela 'Nota'
 
         connectToDB();      // função para conectar no BD
 
         // String de comando que vai ser realizada no BD
-        String sql = "DELETE FROM nota where Alunos_matricula=? and Alunos_curso=? and Materia_Monitor_idMonitor=?";
+        String sql = "DELETE FROM nota where Alunos_matricula=? and Alunos_curso=? and Materia_idMateria=?";
 
         try {
             pst = con.prepareStatement(sql);        // faz a preparação para selecionar dados na tebala nota
@@ -105,7 +105,7 @@ public class NotaDAO extends ConnectionDAO{
             // inserção de dados no bd
             pst.setInt(1, matricula);
             pst.setString(2, curso);
-            pst.setInt(3, monitor);
+            pst.setString(3, idMateria);
             pst.execute();
 
             sucesso = true;     // define como sucesso a deleta de dados

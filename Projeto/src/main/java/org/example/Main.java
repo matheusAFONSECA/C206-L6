@@ -27,7 +27,8 @@ public class Main {
             System.out.println("3 - Cadastrar materia");
             System.out.println("4 - Publicar ou corrigir Nota");
             System.out.println("5 - Calculo da media das notas de alguma materia especifica");
-            System.out.println("6 - SAIR");
+            System.out.println("6 - Excluir resgistro de Aluno, Professor, Monitor, Materia ou Nota...");
+            System.out.println("7 - SAIR");
 
             int op = in.nextInt();      // inteiro que controla o menu
             in.nextLine();              // necessário para poder adicionar Strings após um Int
@@ -300,7 +301,139 @@ public class Main {
 
                     break;
 
-                case 6:     // sai do menu de opções
+                case 6:     // deletar algo no BD
+
+                    System.out.println("DESEJA EXLUIR REGISTRO DE:");
+                    System.out.println("1 - Alunos");
+                    System.out.println("2 - Professores");
+                    System.out.println("3 - Monitores");
+                    System.out.println("4 - Materias");
+                    System.out.println("5 - Notas");
+
+                    int opAUX4 = in.nextInt();       // inteiro que controla o sub menu
+                    in.nextLine();                   // necessário para poder adicionar Strings após um Int
+
+                    switch (opAUX4){
+                        case 1:     // exclui um aluno do BD
+
+                            // instanciando um alunoDAO
+                            AlunoDAO alunoDAOdelete = new AlunoDAO();
+
+                            // var aux
+                            int matriculaDelete;        // matricula do aluno que sera deletado do BD
+                            String cursoDelete;               // curso do aluno que sera deletado do BD
+
+                            System.out.println("EXCLUINDO REGISTRO DE ALUNO: ");
+
+                            System.out.print("MATRICULA: ");
+                            matriculaDelete = in.nextInt();
+                            in.nextLine();
+
+                            System.out.print("CURSO: ");
+                            cursoDelete = in.nextLine();
+
+                            //excluindo aluno do BD
+                            alunoDAOdelete.deleteAluno(matriculaDelete, cursoDelete);
+
+                            break;
+
+                        case 2:     // exclui um professor do BD
+
+                            // instanciando um ProfessorDAO
+                            ProfessorDAO professorDAOdelete = new ProfessorDAO();
+
+                            // var aux
+                            int idProfessorDelete;      // id do professor que sera excluido do BD
+
+                            System.out.println("EXCLUINDO RESGISTRO DO PROFESSOR:");
+
+                            System.out.print("ID DO PROFESSOR: ");
+                            idProfessorDelete = in.nextInt();
+
+                            // excluindo professor do BD
+                            professorDAOdelete.deleteProfessor(idProfessorDelete);
+
+                            break;
+
+                        case 3:     // exclui um Monitor
+
+                            // instanciando um MonitorDAO
+                            MonitorDAO monitorDAOdelete = new MonitorDAO();
+
+                            // var aux
+                            int monitorDelete;          // matricula do monitor que será excluido do BD
+                            String monitorDelete2;      // curso do monitor que sera excluido do BD
+
+                            System.out.println("EXCLUINDO REGISTRO DO MONITOR:");
+
+                            System.out.print("CURSO: ");
+                            monitorDelete2 = in.nextLine();
+
+                            System.out.print("MATRICULA: ");
+                            monitorDelete = in.nextInt();
+
+                            // excluindo monitor do BD
+                            monitorDAOdelete.deleteMonitor(monitorDelete, monitorDelete2);
+
+                            break;
+
+                        case 4:     // exclui uma materia
+
+                            // instanciando uma MtaeriaDAO
+                            MateriaDAO materiaDAOdelete = new MateriaDAO();
+
+                            // var aux
+                            int idProfessorResponsavel;     // id do professor responsavel pela materia
+                            String siglaDelete;             // sigla da materia que sera excluida dos resgistros
+
+                            System.out.println("EXCLUINDO REGISTRO DA MATERIA:");
+
+                            System.out.print("SIGLA: ");
+                            siglaDelete = in.nextLine();
+
+                            System.out.print("ID DO PROFESSOR RESPONSAVEL: ");
+                            idProfessorResponsavel = in.nextInt();
+
+                            // excluindo registro do BD
+                            materiaDAOdelete.deleteMateria(siglaDelete, idProfessorResponsavel);
+
+                            break;
+
+                        case 5:     // exclui uma nota
+
+                            // instanciando uma NotaDAO
+                            NotaDAO notaDAOdelete = new NotaDAO();
+
+                            // var aux
+                            int notaDeleteMat;              // id da matricula que tera a nota excluida do registro
+                            String notaDeleteCur;           // curso da nota excluida do registro
+                            String notaDeleteMate;          // materia da nota excluida do registro
+
+                            System.out.println("EXCLUINDO REGISTRO DE NOTA: ");
+
+                            System.out.print("MATRICULA");
+                            notaDeleteMat = in.nextInt();
+                            in.nextLine();
+
+                            System.out.print("CURSO: ");
+                            notaDeleteCur = in.nextLine();
+
+                            System.out.print("MATERIA: ");
+                            notaDeleteMate = in.nextLine();
+
+                            // excluindo registro da nota do BD
+                            notaDAOdelete.deleteNota(notaDeleteMat, notaDeleteCur, notaDeleteMate);
+
+                            break;
+
+                        default:        // caso tenha colocado uma opção errada
+                            System.out.println("ESCOLHA UMA OPÇÃO VÁLIDA!!!");
+                            break;
+                    }
+
+                    break;
+
+                case 7:     // sai do menu de opções
                     flag = false;
                     break;
 
