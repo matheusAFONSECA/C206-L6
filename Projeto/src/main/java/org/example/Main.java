@@ -3,15 +3,13 @@ package org.example;
 import org.example.DAO.*;
 import org.example.MODEL.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 // -> nessa classe vamos fazer o menu que vai rodar no termial e fazer todas as funcionalidades do código
 public class Main {
     public static void main(String[] args) {
         // -> Sera um usado um menu oara fazer toda a inserção de dados no BD
-        // -> Aqui é como se fosse o sistema de administração geral da escola
+        // -> Aqui é o sistema de administração geral da escola, como um CRA no INATEL
 
         // criando um Scanner
         Scanner in = new Scanner(System.in);
@@ -21,7 +19,7 @@ public class Main {
         System.out.println("BEM VINDO AO SISTEMA DA ESCOLA!!!! ");
 
         while (flag) {
-            System.out.println("Qual ação deseja realizar??");
+            System.out.println("QUAL AÇÃO DESEJA REALIZAR??");
             System.out.println("1 - Cadastrar um novo Aluno, Professor ou Monitor");
             System.out.println("2 - Listagem de Alunos, Professores, Monitores e Materias");
             System.out.println("3 - Cadastrar materia");
@@ -37,9 +35,9 @@ public class Main {
             switch (op){
                 case 1:     // cadastro de aluno, professor ou monitor
                     System.out.println("QUAL TIPO DE CADASTRO DESEJA FAZER:");
-                    System.out.println("1 - Aluno");
-                    System.out.println("2 - Professor");
-                    System.out.println("3 - Monitor");
+                    System.out.println("1 - ALUNO");
+                    System.out.println("2 - PROFESSOR");
+                    System.out.println("3 - MONITOR");
 
                     int opAUX = in.nextInt();       // inteiro que controla o sub menu
                     in.nextLine();                  // necessário para poder adicionar Strings após um Int
@@ -138,10 +136,10 @@ public class Main {
 
                 case 2:     // listagem de alunos, professor e monitores
                     System.out.println("DESEJA FAZER LISTAGEM DE:");
-                    System.out.println("1 - Alunos");
-                    System.out.println("2 - Professores");
-                    System.out.println("3 - Monitores");
-                    System.out.println("4 - Materias");
+                    System.out.println("1 - ALUNOS");
+                    System.out.println("2 - PROFESSORES");
+                    System.out.println("3 - MONITORES");
+                    System.out.println("4 - MATERIAS");
 
                     int opAUX2 = in.nextInt();       // inteiro que controla o sub menu
                     in.nextLine();                   // necessário para poder adicionar Strings após um Int
@@ -216,8 +214,8 @@ public class Main {
                 case 4:
 
                     System.out.println("O QUE DESEJA FAZER:");
-                    System.out.println("1 - Publicar nota");
-                    System.out.println("2 - Corigir nota");
+                    System.out.println("1 - PUBLICAR NOTA");
+                    System.out.println("2 - CORRIGIR NOTA");
 
                     int opAUX3 = in.nextInt();       // inteiro que controla o sub menu
                     in.nextLine();                   // necessário para poder adicionar Strings após um Int
@@ -273,17 +271,17 @@ public class Main {
 
                             System.out.println("CORRIGINDO NOTA: ");
 
-                            System.out.print("Matricula: ");
+                            System.out.print("MATRICULA: ");
                             matriculaUpdateNota = in.nextInt();
                             in.nextLine();
 
-                            System.out.print("Curso: ");
+                            System.out.print("CURSO: ");
                             cursoUpdateNota = in.nextLine();
 
-                            System.out.print("Materia: ");
+                            System.out.print("MATERIA: ");
                             materiaUpdateNota = in.nextLine();
 
-                            System.out.print("Nota Atualizada: ");
+                            System.out.print("NOTA ATUALIZADA: ");
                             notaAtualizada = in.nextInt();
 
                             // atualizando a nota
@@ -318,11 +316,11 @@ public class Main {
                 case 6:     // deletar algo no BD
 
                     System.out.println("DESEJA EXLUIR REGISTRO DE:");
-                    System.out.println("1 - Alunos");
-                    System.out.println("2 - Professores");
-                    System.out.println("3 - Monitores");
-                    System.out.println("4 - Materias");
-                    System.out.println("5 - Notas");
+                    System.out.println("1 - ALUNO");
+                    System.out.println("2 - PROFESSOR");
+                    System.out.println("3 - MONITOR");
+                    System.out.println("4 - MATERIA");
+                    System.out.println("5 - NOTA");
 
                     int opAUX4 = in.nextInt();       // inteiro que controla o sub menu
                     in.nextLine();                   // necessário para poder adicionar Strings após um Int
@@ -522,24 +520,16 @@ public class Main {
                             AlunoHasProfessorDAO alunoHasProfessorDAOde = new AlunoHasProfessorDAO();
 
                             // var aux
-                            int idOrientadorDE;           // orientador do aluno
                             int matriculaOrientadoDE;     // aluno orientado
                             String cursoOrientadoDE;      // curso do aluno orientado
 
-                            System.out.println("Adicionando um novo orientador: ");
+                            System.out.println("Excluindo aluno orientado: ");
 
                             System.out.print("CURSO DO ALUNO: ");
                             cursoOrientadoDE = in.nextLine();
 
                             System.out.print("MATRICULA DO ALUNO: ");
                             matriculaOrientadoDE = in.nextInt();
-
-                            System.out.print("ID DO ORIENTADOR: ");
-                            idOrientadorDE = in.nextInt();
-
-                            // instanciando um AlunoHasProfessor
-                            AlunoHasProfessor alunoHasProfessorDE = new AlunoHasProfessor(matriculaOrientadoDE,
-                                    cursoOrientadoDE, idOrientadorDE);
 
                             // adicionando registro no BD
                             alunoHasProfessorDAOde.deleteAlunoHasProfessor(matriculaOrientadoDE, cursoOrientadoDE);
@@ -563,7 +553,7 @@ public class Main {
             }
 
         }
-        System.out.println("Obrigado por utilizar o sistema!!!");
+        System.out.println("OBRIGADO POR UTILIZAR O SISTEMA!!!");
 
         // fechando o Scanner
         in.close();
