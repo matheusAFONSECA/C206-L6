@@ -28,7 +28,7 @@ public class Main {
             System.out.println("4 - Publicar ou corrigir Nota");
             System.out.println("5 - Calculo da media das notas de alguma materia específica");
             System.out.println("6 - Excluir resgistro de Aluno, Professor, Monitor, Materia ou Nota...");
-            System.out.println("7 - Definir orientador para algum aluno");
+            System.out.println("7 - Definir, Excluir ou Atualizar orientador");
             System.out.println("8 - SAIR");
 
             int op = in.nextInt();      // inteiro que controla o menu
@@ -447,33 +447,109 @@ public class Main {
 
                     break;
 
-                case 7:     // definir um orientador para algum aluno
+                case 7:     // definir, atualizar ou exluir um orientador para algum aluno
 
-                    // instanciando AlunoHasProfessorDAO
-                    AlunoHasProfessorDAO alunoHasProfessorDAO = new AlunoHasProfessorDAO();
+                    System.out.println("DESEJA REALIZAR QUAIS DAS AÇÕES SOBRE ORIENTADORES:");
+                    System.out.println("1 - ADICIONAR");
+                    System.out.println("2 - AUALIZAR");
+                    System.out.println("3 - EXCLUIR");
 
-                    // var aux
-                    int idOrientador;           // orientador do aluno
-                    int matriculaOrientado;     // aluno orientado
-                    String cursoOrientado;      // curso do aluno orientado
+                    int opAUX5 = in.nextInt();       // inteiro que controla o sub menu
+                    in.nextLine();                   // necessário para poder adicionar Strings após um Int
 
-                    System.out.println("Adicionando um novo orientador: ");
+                    switch (opAUX5){
 
-                    System.out.print("CURSO DO ALUNO: ");
-                    cursoOrientado = in.nextLine();
+                        case 1:     // adicionar um orientador
 
-                    System.out.print("MATRICULA DO ALUNO: ");
-                    matriculaOrientado = in.nextInt();
+                            // instanciando AlunoHasProfessorDAO
+                            AlunoHasProfessorDAO alunoHasProfessorDAO = new AlunoHasProfessorDAO();
 
-                    System.out.print("ID DO ORIENTADOR: ");
-                    idOrientador = in.nextInt();
+                            // var aux
+                            int idOrientador;           // orientador do aluno
+                            int matriculaOrientado;     // aluno orientado
+                            String cursoOrientado;      // curso do aluno orientado
 
-                    // instanciando um AlunoHasProfessor
-                    AlunoHasProfessor alunoHasProfessor = new AlunoHasProfessor(matriculaOrientado, cursoOrientado,
-                            idOrientador);
+                            System.out.println("Adicionando um novo orientador: ");
 
-                    // adicionando registro no BD
-                    alunoHasProfessorDAO.insertAlunoHasPofessor(alunoHasProfessor);
+                            System.out.print("CURSO DO ALUNO: ");
+                            cursoOrientado = in.nextLine();
+
+                            System.out.print("MATRICULA DO ALUNO: ");
+                            matriculaOrientado = in.nextInt();
+
+                            System.out.print("ID DO ORIENTADOR: ");
+                            idOrientador = in.nextInt();
+
+                            // instanciando um AlunoHasProfessor
+                            AlunoHasProfessor alunoHasProfessor = new AlunoHasProfessor(matriculaOrientado, cursoOrientado,
+                                    idOrientador);
+
+                            // adicionando registro no BD
+                            alunoHasProfessorDAO.insertAlunoHasPofessor(alunoHasProfessor);
+
+                            break;
+
+                        case 2:     // atualizar um orientador
+
+                            // instanciando AlunoHasProfessorDAO
+                            AlunoHasProfessorDAO alunoHasProfessorDAOupdate = new AlunoHasProfessorDAO();
+
+                            // var aux
+                            int idOrientadorUP;           // orientador do aluno
+                            int matriculaOrientadoUP;     // aluno orientado
+                            String cursoOrientadoUP;      // curso do aluno orientado
+
+                            System.out.println("Atualizando um orientador: ");
+
+                            System.out.print("CURSO DO ALUNO: ");
+                            cursoOrientadoUP = in.nextLine();
+
+                            System.out.print("MATRICULA DO ALUNO: ");
+                            matriculaOrientadoUP = in.nextInt();
+
+                            System.out.print("ID DO NOVO ORIENTADOR: ");
+                            idOrientadorUP = in.nextInt();
+
+                            // adicionando registro no BD
+                            alunoHasProfessorDAOupdate.updateAlunoHasProfessor(matriculaOrientadoUP
+                                    , cursoOrientadoUP, idOrientadorUP);
+
+                            break;
+
+                        case 3:     // excluir um orientador
+
+                            // instanciando AlunoHasProfessorDAO
+                            AlunoHasProfessorDAO alunoHasProfessorDAOde = new AlunoHasProfessorDAO();
+
+                            // var aux
+                            int idOrientadorDE;           // orientador do aluno
+                            int matriculaOrientadoDE;     // aluno orientado
+                            String cursoOrientadoDE;      // curso do aluno orientado
+
+                            System.out.println("Adicionando um novo orientador: ");
+
+                            System.out.print("CURSO DO ALUNO: ");
+                            cursoOrientadoDE = in.nextLine();
+
+                            System.out.print("MATRICULA DO ALUNO: ");
+                            matriculaOrientadoDE = in.nextInt();
+
+                            System.out.print("ID DO ORIENTADOR: ");
+                            idOrientadorDE = in.nextInt();
+
+                            // instanciando um AlunoHasProfessor
+                            AlunoHasProfessor alunoHasProfessorDE = new AlunoHasProfessor(matriculaOrientadoDE,
+                                    cursoOrientadoDE, idOrientadorDE);
+
+                            // adicionando registro no BD
+                            alunoHasProfessorDAOde.deleteAlunoHasProfessor(matriculaOrientadoDE, cursoOrientadoDE);
+
+                            break;
+
+                        default:
+                            System.out.println("INSIRA UMA OPÇÃO VÁLIDA");
+                            break;
+                    }
 
                     break;
 
